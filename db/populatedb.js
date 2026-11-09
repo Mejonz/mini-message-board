@@ -1,6 +1,8 @@
 #! /usr/bin/env node
-
+import { loadEnvFile } from 'node:process';
 import { Client } from 'pg';
+
+loadEnvFile('./.env.local')
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
@@ -19,7 +21,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: "postgresql://neondb_owner:npg_MC2f7dYntgRD@ep-aged-salad-a7h070zq-pooler.ap-southeast-2.aws.neon.tech/neondb?channel_binding=require&sslmode=require",
+    connectionString: process.env.DATABASE_URL,
   });
   await client.connect();
   await client.query(SQL);
