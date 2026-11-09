@@ -2,7 +2,7 @@
 import { loadEnvFile } from 'node:process';
 import { Client } from 'pg';
 
-loadEnvFile('./.env.local')
+// loadEnvFile('./.env.local')
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
